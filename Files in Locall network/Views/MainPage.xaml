@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             Title="Files in local network"
+             x:Class="Files_in_Locall_network.Views.MainPage">
+
+  
+  <Grid BackgroundColor="Transparent" VerticalOptions="Fill" Padding="15">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+
+    <Label Grid.Row="0" Text="{Binding DeviceName_Ip}" Padding="0,10,0,25" 
+               VerticalOptions="Start" HorizontalOptions="Center" TextColor="Green"/>
+
+    <Button Grid.Row="1" Command="{Binding CheckDeviceBtn}"
+                Text="{Binding CheckDeviceBtnText}"
+                HorizontalOptions="Center" BackgroundColor="Blue"/>
+
+    <Label Grid.Row="2" Text="{Binding TextError}" FontAttributes="Bold"
+           Margin="0,15,0,15" TextColor="{Binding TextErrorColor}" HorizontalOptions="Center"/>
+
+    <ListView Grid.Row="3" ItemsSource="{Binding Device_List}" HasUnevenRows="True" HeightRequest="200"
+                      SeparatorColor="Transparent" Margin="20,10,20,0" BackgroundColor="LightGray"
+                      HorizontalOptions="Center" VerticalOptions="Start">
+
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+
+            <Grid BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" HorizontalOptions="Center" Text="{Binding Name}" 
+                                       TextColor="Black" FontSize="14"/>
+
+              <Label Grid.Column="1" HorizontalOptions="Center" Text="{Binding IP}" 
+                                       TextColor="Black" FontSize="14"/>
+
+            </Grid>
+
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
+      <ListView.Behaviors>
+        <prism:EventToCommandBehavior EventName="ItemTapped" 
+                                      Command="{Binding ClickToItem}"
+                                      EventArgsParameterPath="Item" />
+      </ListView.Behaviors>
+
+    </ListView>
+
+    
+    <StackLayout Grid.Row="4" HorizontalOptions="Fill"
+                 Margin="0,10,0,10" IsVisible="{Binding IsVisibleProgressBar}">
+
+      <Label Text="{Binding Label2}"  
+                   HorizontalOptions="Center" TextColor="Blue"/>
+
+      <ProgressBar Progress="{Binding ProgressBar}" 
+                         Margin="0,5,0,10" ProgressColor="Green" />
+
+    </StackLayout>
+
+
+  </Grid>
+
+</ContentPage>
