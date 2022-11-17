@@ -1,1 +1,1 @@
-C# Maui. Transferring files on the local network. Android, Windows
+C# Maui Prism MVVM. Transferring files on the local network. Android, Windows
